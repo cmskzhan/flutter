@@ -1,3 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Center(child: Text('Hello World 2!'))));
+void main() => runApp(MaterialApp(
+      home: Center(
+        child: Text('Hello World 2!'),
+      ),
+    ));
