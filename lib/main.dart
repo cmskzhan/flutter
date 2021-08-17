@@ -5,7 +5,7 @@ void main() => runApp(
         home: Scaffold(
           backgroundColor: Colors.amberAccent,
           appBar: AppBar(
-            title: Center(child: Text('I Am Rich')),
+            title: Text('I Am Rich'),
             backgroundColor: Colors.redAccent,
           ),
           body: Center(
