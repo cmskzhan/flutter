@@ -6,7 +6,7 @@ void main() => runApp(
           backgroundColor: Colors.amberAccent,
           appBar: AppBar(
             title: Text('I Am Rich'),
-            backgroundColor: Colors.blueGrey[900],
+            backgroundColor: Colors.redAccent,
           ),
         ),
       ),
