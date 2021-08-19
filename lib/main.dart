@@ -8,9 +8,18 @@ void main() => runApp(
             title: Text('I Am Rich'),
             backgroundColor: Colors.redAccent,
           ),
-          body: Center(
-            child: Image(
-              image: NetworkImage('https://media-exp1.licdn.com/dms/image/C4D03AQEdHrby2IzlZg/profile-displayphoto-shrink_400_400/0/1516542582287?e=1634774400&v=beta&t=6greFQvped7cSa0ayFxSxPuAOKAmqV5xhfrdnKYOHI4'),
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    "https://i0.wp.com/flutteragency.com/wp-content/uploads/2020/10/iOS-Emulator.png"),
+                fit: BoxFit.cover
+              ),
+            ),
+            child: Center(
+              child: Image(
+                image: AssetImage('images/CaptureBBC.JPG'),
+              ),
             ),
           ),
         ),
