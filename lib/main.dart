@@ -7,20 +7,22 @@ void main() => runApp(
           appBar: AppBar(
             title: Text('I Am Rich'),
             backgroundColor: Colors.redAccent,
+            leading: const IconButton(
+              onPressed: null,
+              icon: Icon(Icons.menu),
+              tooltip: 'Menu',
+            ),
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    "https://i0.wp.com/flutteragency.com/wp-content/uploads/2020/10/iOS-Emulator.png"),
-                fit: BoxFit.cover
-              ),
+          body: Center(
+            child: Text(
+              "Where am I?",
+              textDirection: TextDirection.rtl,
             ),
-            child: Center(
-              child: Image(
-                image: AssetImage('images/CaptureBBC.JPG'),
-              ),
-            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            tooltip: 'Add',
+            child: Icon(Icons.add_a_photo),
+            onPressed: () { print("Pressed");}, // this only update in debug console
           ),
         ),
       ),
