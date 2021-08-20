@@ -21,13 +21,14 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: SafeArea(
-            child: Container(
-              color: Colors.white,
-              child: Text("body -> child's \n 2nd line"),
-              height: 100,
-              width: 150,
-              margin: EdgeInsets.only(left:100), // how much away from Center
-              padding: EdgeInsets.all(20), // text position inside the safearea
+            child: Column( //Row
+              verticalDirection: VerticalDirection.up,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //containers distributed evenly on the screen
+              children: [
+                Container(width: 100, height: 100,color: Colors.white,child: Text("Container1"),),
+                Container(width: double.infinity, height: 100,color: Colors.blue,child: Text("Container2"),),
+                Container(width: double.infinity, height: 100,color: Colors.red,child: Text("Container3"),)
+              ],
             ),
           ),
         ),
