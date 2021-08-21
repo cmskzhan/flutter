@@ -5,6 +5,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,19 +20,54 @@ class MyApp extends StatelessWidget {
             tooltip: 'Menu',
           ),
         ),
-        body: Center(
-          child: SafeArea(
+        body: SafeArea(
             child: Column( //Row
-              verticalDirection: VerticalDirection.up,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //containers distributed evenly on the screen
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(width: 100, height: 100,color: Colors.white,child: Text("Container1"),),
-                Container(width: double.infinity, height: 100,color: Colors.blue,child: Text("Container2"),),
-                Container(width: double.infinity, height: 100,color: Colors.red,child: Text("Container3"),)
+                CircleAvatar(radius: 80, backgroundColor: Colors.white, backgroundImage: NetworkImage("https://media-exp1.licdn.com/dms/image/C4D03AQEdHrby2IzlZg/profile-displayphoto-shrink_400_400/0/1516542582287?e=1634774400&v=beta&t=6greFQvped7cSa0ayFxSxPuAOKAmqV5xhfrdnKYOHI4"),),
+                Text("Kai Zhang", style: TextStyle(letterSpacing: 3, fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),),
+                Text("Vanguard SRE", style: TextStyle(fontFamily: "Calibri", fontSize: 12, color: Colors.blue),),
+                SizedBox(height: 20, width: 150, child: Divider(color: Colors.blue,),),
+                Container(
+                  color: Colors.black,
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        size: 10,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20,),
+                      Text("07972936406", style: TextStyle(color: Colors.white)),
+                    ],
+              )
+                    
+                ),
+                Container(color: Colors.black,
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.email,
+                        size: 10,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 18,),
+                      Text("kaizhang@hotmail.com", style: TextStyle(color: Colors.white)),
+                    ],
+              )                 
+                ),
+                Card(
+                  color: Colors.blueGrey,
+                  child: ListTile(leading: Icon(Icons.web, size:25), title: Text("https://www.linkedin.com/in/kai-zhang-93488414/", style: TextStyle(color: Colors.white, fontSize: 12)),)
+                ),
               ],
             ),
           ),
-        ),
+        
         floatingActionButton: FloatingActionButton(
           tooltip: 'Add',
           child: Icon(Icons.add_a_photo),
