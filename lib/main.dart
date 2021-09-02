@@ -20,10 +20,12 @@ class DicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Expanded(  // use Expanded to fix png to screen
+          flex: 2, // twice as large as 2nd one
           child: Image(
             image: AssetImage('images/dice1.png'),
           ),
         ),
+      Expanded(flex: 1, child: Image(image: AssetImage('images/dice2.png')))
     ],);
   }
 }
