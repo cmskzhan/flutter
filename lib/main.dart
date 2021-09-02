@@ -29,24 +29,23 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 6;
 
+  void diceupdate() {
+            setState(() {
+              leftDiceNumber = Random().nextInt(6) + 1;
+              rightDiceNumber = Random().nextInt(6) + 1;
+            });
+            print('dice1 number is $leftDiceNumber, dice2 number is $rightDiceNumber');
+          }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(child: TextButton(onPressed: () {
-          setState(() {//setState will mark variable change as dirty and change all in the context
-            leftDiceNumber = Random().nextInt(6) + 1;
-            print('dice1 number is $leftDiceNumber');
-          });
-        },
-        child: Image.asset('images/dice$leftDiceNumber.png'),)),
-
-        Expanded(child: TextButton(onPressed: () {
-          rightDiceNumber = 2;
-          print('dice1 number is $rightDiceNumber');
-        },
-        child: Image.asset('images/dice$rightDiceNumber.png'),))
-      ]
+    return Center(
+      child: Row(
+        children: [
+          Expanded(child: TextButton(onPressed: () {diceupdate();}, child: Image.asset('images/dice$leftDiceNumber.png'))),
+          Expanded(child: TextButton(onPressed: () {diceupdate();}, child: Image.asset('images/dice$rightDiceNumber.png'))),
+        ]
+      ),
     );
   }
 }
