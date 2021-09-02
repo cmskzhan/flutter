@@ -18,12 +18,16 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Expanded(  // use Expanded to fix png to screen
-          flex: 2, // twice as large as 2nd one
-          child: Image.asset('images/dice1.png'),
-          ),
-      Expanded(flex: 2, child: Image.asset('images/dice2.png'))
+    return Row(
+      children: [
+        Expanded(flex: 2, child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Image.asset('images/dice2.png'),
+        )),
+        Expanded(  // use Expanded to fix png to screen
+            flex: 2, // twice as large as 2nd one
+            child: Image.asset('images/dice3.png'),
+            )
     ],);
   }
 }
