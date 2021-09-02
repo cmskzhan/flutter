@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/myCard.dart';
+import 'dart:math';
 
-<<<<<<< HEAD
-void main() => runApp(MyApp());
-
-=======
 void main() {
   return runApp(
     MaterialApp(
@@ -12,7 +8,7 @@ void main() {
         backgroundColor: Colors.red,
         appBar: AppBar(
           title: Text('Dicee'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.blue,
         ),
         body: DicePage(),
       ),
@@ -20,25 +16,37 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+
+
+class DicePage extends StatefulWidget {
+  const DicePage({ Key? key }) : super(key: key);
+
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 6;
+
   @override
   Widget build(BuildContext context) {
-    var diceNumber1 = 1;
     return Row(
       children: [
-        Expanded(flex: 2, child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Image.asset('images/dice$diceNumber1.png'),
-        )),
-        Expanded(  // use Expanded to fix png to screen
-            flex: 2, // twice as large as 2nd one
-            child: FlatButton(
-              onPressed: (){
-                print("button dice3 pressed");
-              },
-              child: Image.asset('images/dice3.png')),
-            )
-    ],);
+        Expanded(child: TextButton(onPressed: () {
+          setState(() {//setState will mark variable change as dirty and change all in the context
+            leftDiceNumber = Random().nextInt(6) + 1;
+            print('dice1 number is $leftDiceNumber');
+          });
+        },
+        child: Image.asset('images/dice$leftDiceNumber.png'),)),
+
+        Expanded(child: TextButton(onPressed: () {
+          rightDiceNumber = 2;
+          print('dice1 number is $rightDiceNumber');
+        },
+        child: Image.asset('images/dice$rightDiceNumber.png'),))
+      ]
+    );
   }
 }
->>>>>>> ab69e0dc0338544a23183887f20e8a7f7bb2b90c
