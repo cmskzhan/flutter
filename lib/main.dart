@@ -18,15 +18,20 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var diceNumber1 = 1;
     return Row(
       children: [
         Expanded(flex: 2, child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Image.asset('images/dice2.png'),
+          child: Image.asset('images/dice$diceNumber1.png'),
         )),
         Expanded(  // use Expanded to fix png to screen
             flex: 2, // twice as large as 2nd one
-            child: Image.asset('images/dice3.png'),
+            child: FlatButton(
+              onPressed: (){
+                print("button dice3 pressed");
+              },
+              child: Image.asset('images/dice3.png')),
             )
     ],);
   }
