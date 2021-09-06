@@ -1,52 +1,20 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
-void main() {
-  return runApp(
-    MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.red,
-        appBar: AppBar(
-          title: Text('Dicee'),
-          backgroundColor: Colors.blue,
-        ),
-        body: DicePage(),
-      ),
-    ),
-  );
-}
+void main() => runApp(XylophoneApp());
 
-
-
-class DicePage extends StatefulWidget {
-  const DicePage({ Key? key }) : super(key: key);
-
-  @override
-  _DicePageState createState() => _DicePageState();
-}
-
-class _DicePageState extends State<DicePage> {
-  int leftDiceNumber = 1;
-  int rightDiceNumber = 6;
-
-  void diceupdate() {
-            setState(() {
-              leftDiceNumber = Random().nextInt(6) + 1;
-              rightDiceNumber = Random().nextInt(6) + 1;
-            });
-            print('dice1 number is $leftDiceNumber, dice2 number is $rightDiceNumber');
-          }
-
+class XylophoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Expanded(child: TextButton(onPressed: () {diceupdate();}, child: Image.asset('images/dice$leftDiceNumber.png'))),
-          Expanded(child: TextButton(onPressed: () {diceupdate();}, child: Image.asset('images/dice$rightDiceNumber.png'))),
-        ]
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: TextButton(onPressed: () {
+            final player = AudioCache();
+            player.play('note1.wav');
+          }, child: Text('play me'),),
+        ),
       ),
     );
   }
 }
-
