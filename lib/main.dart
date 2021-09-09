@@ -1,55 +1,133 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 
-void main() => runApp(XylophoneApp());
+void main() => runApp(Quizzler());
 
-class XylophoneApp extends StatelessWidget {
-
-  //create play sound function
-  void playAsound(int tonation) {
-                final player = AudioCache();
-                player.play('note$tonation.wav');
-  }
-
-  final List<Color> colors = [Colors.orangeAccent, Colors.red, Colors.blue, Colors.black, Colors.yellow, Colors.grey, Colors.green];
-
-  //function to use in UI
-  Expanded buildKeyboard({Color bgcolor = Colors.black, int wavefile = 1}) {
-    return Expanded(
-      child: TextButton(
-        style: TextButton.styleFrom(
-          primary: Colors.amberAccent,
-          backgroundColor: bgcolor,
-        ),
-        onPressed: () {
-          playAsound(wavefile);
-      }, child: Text('press me'),),
-    );
-  }
-
+class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        appBar: AppBar(
+          title: Text('Quizzler'),
+          backgroundColor: Colors.amberAccent,
+        ),
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              buildKeyboard(),
-              buildKeyboard( bgcolor: Colors.blueAccent, wavefile: 3), //note the parameter use : instead of = like python
-              for (int i = 0; i < 7; i++) buildKeyboard(wavefile: i + 1, bgcolor: colors[i]), // no curly brackets {}, otherwise, it becomes Set
-              TextButton(
-                 style: TextButton.styleFrom(
-                  primary: Colors.blue
-                ),
-                onPressed: () {
-                final player = AudioCache();
-                player.play('note4.wav');
-              }, child: Text('No loop no function, pure button!'),)
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: QuizPage(),
           ),
         ),
       ),
     );
   }
 }
+
+class QuizPage extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
+
+class _QuizPageState extends State<QuizPage> {
+  //create 2 lists, empty one to keepscore, a list of right and wrong icons to add to keepscore
+  List<Widget> score = [
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.close, color: Colors.red)
+  ];
+  List<Widget> scoreKeeper = [];
+
+  //create question list
+  List questions  = ['You can lead a cow down stairs but not up stairs.', 
+                    'Approximately one quarter of human bones are in the feet.',
+                    'A slug\'s blood is green.'];
+  int questionnumber = 0;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Center(
+              child: Text(
+                questions[questionnumber],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+              child: Text(
+                'True',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+              onPressed: () {
+                setState(() { 
+                  scoreKeeper.add(Icon( //add tick  to scoreKeeper list hard way
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                });
+                print("true pressed");
+
+                questionnumber++;
+
+              },
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              child: Text(
+                'False',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                setState(() { // add x to scoreKeeper list from score list
+                  scoreKeeper.add(score[1]);
+                });
+                print("pressed false!");
+                questionnumber++;
+              },
+            ),
+          ),
+        ),
+        Row(
+          children: scoreKeeper,
+        )
+      ],
+    );
+  }
+}
+
+/*
+question1: 'You can lead a cow down stairs but not up stairs.', false,
+question2: 'Approximately one quarter of human bones are in the feet.', true,
+question3: 'A slug\'s blood is green.', true,
+*/
