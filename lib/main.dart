@@ -41,6 +41,7 @@ class _QuizPageState extends State<QuizPage> {
                     'Approximately one quarter of human bones are in the feet.',
                     'A slug\'s blood is green.'];
   int questionnumber = 0;
+  List<bool> questionanswers = [false, true, true];
 
 
   @override
@@ -86,6 +87,11 @@ class _QuizPageState extends State<QuizPage> {
                     color: Colors.green,
                   ));
                 });
+                if (questionanswers[questionnumber] == true){
+                  print("got it right");
+                } else {
+                  print("got it wrong");
+                }
                 print("true pressed");
 
                 questionnumber++;
@@ -112,6 +118,12 @@ class _QuizPageState extends State<QuizPage> {
                 setState(() { // add x to scoreKeeper list from score list
                   scoreKeeper.add(score[1]);
                 });
+                if (questionanswers[questionnumber] == false){
+                  print("got it right");
+                } else {
+                  print("got it wrong");
+                }
+
                 print("pressed false!");
                 questionnumber++;
               },
