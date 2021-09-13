@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'MyDictionary.dart';
+import 'QuizBank.dart';
+
+QuizBank quizBank = QuizBank();
 
 void main() => runApp(Quizzler());
 
@@ -43,12 +45,11 @@ class _QuizPageState extends State<QuizPage> {
   //                   'A slug\'s blood is green.'];
   // 
   // List<bool> questionanswers = [false, true, true];
-
   int questionnumber = 0;
-  MyDictionary q1 = MyDictionary(s: "A TrueFlase question from direct class instance", a: true); // print(q1.s1) in a method
-  List<MyDictionary> qas = [MyDictionary(s: 'You can lead a cow down stairs but not up stairs.', a: false), 
-                            MyDictionary(s: 'Approximately one quarter of human bones are in the feet.', a: true),
-                            MyDictionary(s: 'A slug\'s blood is green.', a: true) ];
+  // StringBooleanDict q1 = StringBooleanDict(s: "A TrueFlase question from direct class instance", a: true); // print(q1.s1) in a method
+  // List<StringBooleanDict> qas = [StringBooleanDict(s: 'You can lead a cow down stairs but not up stairs.', a: false), 
+  //                           StringBooleanDict(s: 'Approximately one quarter of human bones are in the feet.', a: true),
+  //                           StringBooleanDict(s: 'A slug\'s blood is green.', a: true) ];
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                qas[questionnumber].s1,
+                quizBank.qas[questionnumber].s1,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -93,12 +94,12 @@ class _QuizPageState extends State<QuizPage> {
                     color: Colors.green,
                   ));
                 });
-                if (qas[questionnumber].trueFalse == true){
+                if (quizBank.qas[questionnumber].trueFalse == true){
                   print("got it right");
                 } else {
                   print("got it wrong");
                 }
-                print(qas[questionnumber].s1);
+                print(quizBank.qas[questionnumber].s1);
 
                 questionnumber++;
 
@@ -124,13 +125,13 @@ class _QuizPageState extends State<QuizPage> {
                 setState(() { // add x to scoreKeeper list from score list
                   scoreKeeper.add(score[1]);
                 });
-                if (qas[questionnumber].trueFalse == false){
+                if (quizBank.qas[questionnumber].trueFalse == false){
                   print("got it right");
                 } else {
                   print("got it wrong");
                 }
 
-                print(qas[questionnumber].s1);
+                print(quizBank.qas[questionnumber].s1);
                 questionnumber++;
               },
             ),
