@@ -2,13 +2,13 @@ import 'StringBooleanDict.dart';
 
 class QuizBank {
 
+  int _questionNumber = 0; //_variable makes it private
+  List<StringBooleanDict> qas = [StringBooleanDict(s: 'You can lead a cow down stairs but not up stairs.', a: false), 
+                            StringBooleanDict(s: 'Approximately one quarter of human bones are in the feet.', a: true),
+                            StringBooleanDict(s: 'A slug\'s blood is green.', a: true) ];
 
-  // List<StringBooleanDict> qas = [StringBooleanDict(s: 'You can lead a cow down stairs but not up stairs.', a: false), 
-  //                           StringBooleanDict(s: 'Approximately one quarter of human bones are in the feet.', a: true),
-  //                           StringBooleanDict(s: 'A slug\'s blood is green.', a: true) ];
 
-
-  List<StringBooleanDict> qas = [
+  List<StringBooleanDict> _qas = [ //_variable makes it private
     StringBooleanDict(s: 'Some cats are actually allergic to humans',a: true),
     StringBooleanDict(s: 'You can lead a cow down stairs but not up stairs.', a: false),
     StringBooleanDict(s: 'Approximately one quarter of human bones are in the feet.', a: true),
@@ -29,6 +29,21 @@ class QuizBank {
         a: true),
   ];
 
+
+
+
+  String getQuestionText() { // main() can call and access question text
+    return _qas[_questionNumber].s1;
+  }
+  bool getQuestionAnswer() { // like above method, encapsulate answer retrieval
+    return _qas[_questionNumber].trueFalse;
+  }
+
+  void nextQuestion() {
+    if (_questionNumber < _qas.length -1) {
+      _questionNumber++;
+    }
+  }
 
 
 }
