@@ -1,9 +1,9 @@
 class MyDictionary {
-  String s1 = "";
-  bool trueFalse = true;
+  late String s1;
+  late bool trueFalse;
 
-  MyDictionary({String s="", bool a=true}) {
-    s = s1;
-    a = trueFalse;
+  MyDictionary({required String s, required bool a}) {
+    s1 = s;
+    trueFalse = a;
   }
 }
