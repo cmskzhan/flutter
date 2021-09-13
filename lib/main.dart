@@ -39,17 +39,10 @@ class _QuizPageState extends State<QuizPage> {
   ];
   List<Widget> scoreKeeper = [];
 
-  //create question list
-  // List questions  = ['You can lead a cow down stairs but not up stairs.', 
-  //                   'Approximately one quarter of human bones are in the feet.',
-  //                   'A slug\'s blood is green.'];
-  // 
-  // List<bool> questionanswers = [false, true, true];
-  // int questionnumber = 0;
-  // StringBooleanDict q1 = StringBooleanDict(s: "A TrueFlase question from direct class instance", a: true); // print(q1.s1) in a method
-  // List<StringBooleanDict> qas = [StringBooleanDict(s: 'You can lead a cow down stairs but not up stairs.', a: false), 
-  //                           StringBooleanDict(s: 'Approximately one quarter of human bones are in the feet.', a: true),
-  //                           StringBooleanDict(s: 'A slug\'s blood is green.', a: true) ];
+  void checkAnswer(bool userInput) {
+    if (userInput == quizBank.getQuestionAnswer()) {scoreKeeper.add(score[0]);} else {scoreKeeper.add(score[1]);}   
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +87,7 @@ class _QuizPageState extends State<QuizPage> {
                     color: Colors.green,
                   ));
                 });
-                if (quizBank.getQuestionAnswer() == true){
-                  print("got it right");
-                } else {
-                  print("got it wrong");
-                }
+                checkAnswer(true);
                 quizBank.nextQuestion();
               },
             ),
@@ -122,11 +111,7 @@ class _QuizPageState extends State<QuizPage> {
                 setState(() { // add x to scoreKeeper list from score list
                   scoreKeeper.add(score[1]);
                 });
-                if (quizBank.getQuestionAnswer() == false){
-                  print("got it right");
-                } else {
-                  print("got it wrong");
-                }
+                checkAnswer(false);
                 quizBank.nextQuestion();
               },
             ),
