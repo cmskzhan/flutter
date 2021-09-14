@@ -30,11 +30,17 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: myContainer()),
-                Expanded(child: myContainer()),
+                Expanded(child: myContainer(c: Colors.brown)),
+                Expanded(child: myContainer(c: Colors.blue)),
               ],
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top: 15),
+            color: Colors.pink,
+            height: 80,
+            width: double.infinity, //expand to the sides
+          )
         ],
       ),
       
@@ -43,11 +49,15 @@ class _InputPageState extends State<InputPage> {
 }
 
 class myContainer extends StatelessWidget {
+  
+  myContainer({this.c: Colors.white});
+  final Color c;  // difference: const calculated before compilation. final is after. Both are immutable
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black26),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: c),
       margin: EdgeInsets.all(10),
     );
   }
