@@ -23,10 +23,10 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(child: MyContainer(
-                  cardChild: GenderCard("Female", Icon(Icons.female, size: 80,)),
+                  cardChild: GenderCard("Female", Icons.female),
                 )),
                 Expanded(child: MyContainer(
-                  cardChild: GenderCard("Male", Icon(Icons.male)),
+                  cardChild: GenderCard("Male", Icons.male_rounded),
                 )),
               ],
             ),
@@ -59,7 +59,7 @@ class GenderCard extends StatelessWidget {
   
   GenderCard(this.s, this.genderIcon);
   final String s;
-  final Icon genderIcon;
+  final IconData genderIcon;
 
   @override
   
@@ -67,7 +67,7 @@ class GenderCard extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        genderIcon,
+        Icon(genderIcon, size: 80, color: Colors.white,),
         SizedBox(height: 15,),
         Text(s, style: TextStyle(color: Colors.white60),)
       ],
@@ -79,7 +79,8 @@ class MyContainer extends StatelessWidget {
   
   MyContainer({this.c: activeCardColor, this.cardChild});
   final Color c;  // difference: const calculated before compilation. final is after. Both are immutable
-  final Widget? cardChild;
+  final Widget? cardChild; // seems only when it's positional, you can use?
+
 
 
   @override
