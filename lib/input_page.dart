@@ -5,6 +5,7 @@ const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
 const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Colors.pink;
+enum gender {male, female}
 
 class InputPage extends StatefulWidget {
 
@@ -14,26 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
 
-  // if gender ==1 male clicked, gender ==2 female clicked
-  void toggleColors(int gender){
-    if (gender == 1) {
-      maleCardColor = activeCardColor;
-      femaleCardColor = inactiveCardColor;
-      print("male clicked");
-    } else if (gender == 2) {
-      femaleCardColor = activeCardColor;
-      maleCardColor = inactiveCardColor;
-      print("female clicked");
-    } else {
-        maleCardColor = inactiveCardColor;
-        femaleCardColor = inactiveCardColor;
-        print("exception: toggleColors method encourter unknown parameter");
-    }
-
-  }
+gender? tappedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +30,16 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(child: GestureDetector(
-                  onTap: () {setState(() { toggleColors(2);}); },
+                  onTap: () {setState(() { tappedGender = gender.female;}); },
                   child: MyContainer(
-                    c: femaleCardColor,
+                    c: tappedGender == gender.female ? activeCardColor : inactiveCardColor,
                     cardChild: GenderCard("Female", Icons.female),
                   ),
                 )),
                 Expanded(child: GestureDetector(
-                  onTap: () {setState(() {
-                    toggleColors(1);
-                  });},
+                  onTap: () {setState(() { tappedGender = gender.male;});},
                   child: MyContainer(
-                    c: maleCardColor,
+                    c: tappedGender == gender.male ? activeCardColor : inactiveCardColor,
                     cardChild: GenderCard("Male", Icons.male_rounded),
                   ),
                 )),
