@@ -11,6 +11,7 @@ class GenderCard extends StatelessWidget {
   final String s;
   final IconData genderIcon;
 
+
   @override
   
   Widget build(BuildContext context) {
@@ -34,16 +35,22 @@ class GenderCard extends StatelessWidget {
 
 class MyContainer extends StatelessWidget {
   
-  MyContainer({this.c: activeCardColor, this.cardChild});
+  MyContainer({this.c: activeCardColor, this.cardChild, this.onPress});
   final Color c;  // difference: const calculated before compilation. final is after. Both are immutable
   final Widget? cardChild; // seems only when it's positional, you can use?
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: c),
-      margin: EdgeInsets.all(10),
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        child: cardChild,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: c),
+        margin: EdgeInsets.all(10),
+      ),
     );
   }
 }
+
+void afunction(){}

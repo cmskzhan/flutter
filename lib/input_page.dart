@@ -29,19 +29,21 @@ gender? tappedGender;
           Expanded(
             child: Row(
               children: [
-                Expanded(child: GestureDetector(
-                  onTap: () {setState(() { tappedGender = gender.female;}); },
-                  child: MyContainer(
-                    c: tappedGender == gender.female ? activeCardColor : inactiveCardColor,
-                    cardChild: GenderCard("Female", Icons.female),
-                  ),
+                Expanded(child: MyContainer(
+                  onPress: () {setState(() {
+                    tappedGender=gender.female;
+                    print("female pressed");
+                  });},
+                  c: tappedGender == gender.female ? activeCardColor : inactiveCardColor,
+                  cardChild: GenderCard("Female", Icons.female),
                 )),
-                Expanded(child: GestureDetector(
-                  onTap: () {setState(() { tappedGender = gender.male;});},
-                  child: MyContainer(
-                    c: tappedGender == gender.male ? activeCardColor : inactiveCardColor,
-                    cardChild: GenderCard("Male", Icons.male_rounded),
-                  ),
+                Expanded(child: MyContainer(
+                  onPress: () {setState(() {
+                    tappedGender=gender.male;
+                    print("pressed male");
+                  });},
+                  c: tappedGender == gender.male ? activeCardColor : inactiveCardColor,
+                  cardChild: GenderCard("Male", Icons.male_rounded),
                 )),
               ],
             ),
