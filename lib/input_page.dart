@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'cardAndContainerTemplates.dart';
+
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
+const bottomContainerColor = Colors.pink;
+enum gender {male, female}
 
 class InputPage extends StatefulWidget {
-  const InputPage({Key? key}) : super(key: key);
+
 
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+
+gender? tappedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,46 +29,45 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: myContainer()),
-                Expanded(child: myContainer()),
+                Expanded(child: MyContainer(
+                  onPress: () {setState(() {
+                    tappedGender=gender.female;
+                    print("female pressed");
+                  });},
+                  c: tappedGender == gender.female ? activeCardColor : inactiveCardColor,
+                  cardChild: GenderCard("Female", Icons.female),
+                )),
+                Expanded(child: MyContainer(
+                  onPress: () {setState(() {
+                    tappedGender=gender.male;
+                    print("pressed male");
+                  });},
+                  c: tappedGender == gender.male ? activeCardColor : inactiveCardColor,
+                  cardChild: GenderCard("Male", Icons.male_rounded),
+                )),
               ],
             ),
           ),
           Expanded(
-            child: myContainer(),
+            child: MyContainer(),
           ),
           Expanded(
             child: Row(
               children: [
-                Expanded(child: myContainer(c: Colors.brown)),
-                Expanded(child: myContainer(c: Colors.blue)),
+                Expanded(child: MyContainer(c: Colors.brown)),
+                Expanded(child: MyContainer(c: Colors.blue)),
               ],
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 15),
-            color: Colors.pink,
-            height: 80,
+            color: bottomContainerColor,
+            height: bottomContainerHeight,
             width: double.infinity, //expand to the sides
           )
         ],
       ),
       
-    );
-  }
-}
-
-class myContainer extends StatelessWidget {
-  
-  myContainer({this.c: Colors.white});
-  final Color c;  // difference: const calculated before compilation. final is after. Both are immutable
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: c),
-      margin: EdgeInsets.all(10),
     );
   }
 }
