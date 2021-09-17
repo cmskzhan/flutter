@@ -70,9 +70,17 @@ gender? tappedGender;
                       Text('cm', style: labelTextStyle,)
                     ],
                   ),
-                  Slider(value: initialTall.toDouble(), min: 80, max: 240, activeColor: Colors.pink, inactiveColor: Colors.grey,
-                         onChanged: (double newTall) { setState(() { initialTall = newTall.floor(); print(newTall); });
-                    } ) ],
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15),
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
+                      activeTrackColor: Colors.pink, // replace activeColor: Colors.pink down in slider attribute
+                      inactiveTrackColor: Colors.grey // replace inactiveColor: Colors.grey down in slider attribute
+                    ),
+                    child: Slider(value: initialTall.toDouble(), min: 80, max: 240, // activeColor: Colors.pink, inactiveColor: Colors.grey,
+                           onChanged: (double newTall) { setState(() { initialTall = newTall.floor(); print(newTall); });
+                      } ),
+                  ) ],
               ),),
           ),
           Expanded(
