@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'cardAndContainerTemplates.dart';
+import 'customWidget.dart';
 
 // might move below const to templates?
 const bottomContainerHeight = 80.0;
@@ -8,6 +9,7 @@ const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Colors.pink;
 int initialTall = 180;
 int initialHeavy = 50;
+int initialAge = 21;
 enum gender {male, female}
 
 const labelTextStyle =  TextStyle(fontSize: 18, color: Colors.white30);
@@ -65,10 +67,11 @@ gender? tappedGender;
                   Text("Height", style: labelTextStyle),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    textBaseline: TextBaseline.alphabetic, //bring unit down as subscriber
+                    textBaseline: TextBaseline.alphabetic, //bring unit down as subscriber, don't seem working
+                    // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(initialTall.toString(), style: boldNumberStyle),
-                      Text('cm', style: labelTextStyle,)
+                      Text('  cm', style: labelTextStyle,)
                     ],
                   ),
                   SliderTheme(
@@ -92,27 +95,66 @@ gender? tappedGender;
                   cardChild: Column(
                     children: [
                       Text("WEIGHT", style: labelTextStyle,),
-                      Text(initialHeavy.toString(), style: boldNumberStyle,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        textBaseline: TextBaseline.ideographic,
+                        children: [
+                          Text(initialHeavy.toString(), style: boldNumberStyle,),
+                          Text("  kg", style: labelTextStyle,),
+                        ],
+                      ),
+                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FloatingActionButton(
-                            onPressed: () {print("weight plus pressed");},
-                            backgroundColor: Colors.grey,
-                            child: Icon(Icons.add, color: Colors.white10,),
+                          RoundIconButton(
+                            onTouch: () {print("custom button pressed plus");
+                                          setState(() {
+                                            initialHeavy++;
+                                          });},
+                            onLongTouch: () {setState(() {
+                              initialHeavy=50;
+                            });},
+                            icon: Icons.add,
                             ),
                           SizedBox(width: 10,),
-                          FloatingActionButton(
-                            onPressed: () {print("weight minus pressed");},
-                            backgroundColor: Colors.grey,
-                            child: Icon(Icons.add, color: Colors.white10,),
-                            ),
+                            RoundIconButton(
+                            onTouch: () {print("custom button pressed minus");
+                                          setState(() {
+                                            initialHeavy--;
+                                          });
+                                          },
+                            icon: Icons.remove,
+                            )
                         ],
                       )
                     ],
                   ),
                 )),
-                Expanded(child: MyContainer(c: Colors.blue)),
+                Expanded(child: MyContainer(
+                  c: activeCardColor,
+                  cardChild: Column(
+                    children: [
+                      Text("AGE", style: labelTextStyle,),
+                      Text(initialAge.toString(), style: boldNumberStyle,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            onTouch: (){ setState(() {
+                              initialAge++;
+                            });},
+                            icon: Icons.add,),
+                          SizedBox(width: 10,),
+                          RoundIconButton(
+                        onTouch: (){ setState(() {
+                              initialAge--;
+                            });},
+                            icon: Icons.remove,)  
+                        ],
+                      ), 
+                    ],
+                  ),)),
               ],
             ),
           ),
