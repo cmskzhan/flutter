@@ -7,6 +7,7 @@ const activeCardColor = Color(0xFF1D1E33);
 const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Colors.pink;
 int initialTall = 180;
+int initialHeavy = 50;
 enum gender {male, female}
 
 const labelTextStyle =  TextStyle(fontSize: 18, color: Colors.white30);
@@ -61,7 +62,7 @@ gender? tappedGender;
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("tall", style: labelTextStyle),
+                  Text("Height", style: labelTextStyle),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     textBaseline: TextBaseline.alphabetic, //bring unit down as subscriber
@@ -86,7 +87,31 @@ gender? tappedGender;
           Expanded(
             child: Row(
               children: [
-                Expanded(child: MyContainer(c: Colors.brown)),
+                Expanded(child: MyContainer(
+                  c: activeCardColor,
+                  cardChild: Column(
+                    children: [
+                      Text("WEIGHT", style: labelTextStyle,),
+                      Text(initialHeavy.toString(), style: boldNumberStyle,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: () {print("weight plus pressed");},
+                            backgroundColor: Colors.grey,
+                            child: Icon(Icons.add, color: Colors.white10,),
+                            ),
+                          SizedBox(width: 10,),
+                          FloatingActionButton(
+                            onPressed: () {print("weight minus pressed");},
+                            backgroundColor: Colors.grey,
+                            child: Icon(Icons.add, color: Colors.white10,),
+                            ),
+                        ],
+                      )
+                    ],
+                  ),
+                )),
                 Expanded(child: MyContainer(c: Colors.blue)),
               ],
             ),
