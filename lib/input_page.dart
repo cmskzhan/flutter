@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'cardAndContainerTemplates.dart';
 import 'customWidget.dart';
+import 'result_page.dart';
 
 // might move below const to templates?
-const bottomContainerHeight = 80.0;
+const bottomContainerHeight = 50.0;
 const activeCardColor = Color(0xFF1D1E33);
 const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Colors.pink;
@@ -158,11 +159,16 @@ gender? tappedGender;
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 15),
-            color: bottomContainerColor,
-            height: bottomContainerHeight,
-            width: double.infinity, //expand to the sides
+          GestureDetector(
+            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) {return ResultPage();}));},
+            child: Container(
+              //margin: EdgeInsets.only(top: 10),
+              //padding: EdgeInsets.only(bottom: 15),
+              color: bottomContainerColor,
+              height: bottomContainerHeight,
+              width: double.infinity, //expand to the sides
+              child: Center(child: Text("Calculate")),
+            ),
           )
         ],
       ),
