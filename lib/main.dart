@@ -1,23 +1,18 @@
 // main page points to homepage, whcih is InputPage
 
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import 'loadingScreen.dart';
 
-void main() => runApp(BMICalculator());
+void main() => runApp(MyApp());
 
-class BMICalculator extends StatelessWidget {
-  const BMICalculator({ Key? key }) : super(key: key);
+class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF0a0e21),
-        scaffoldBackgroundColor: Color(0xFF0a0e21),
-      ),
-      home: InputPage(),
+      theme: ThemeData.dark(),
+      home: LoadingScreen(),
+      
     );
   }
 }
-
-
