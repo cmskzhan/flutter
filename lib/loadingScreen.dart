@@ -14,6 +14,13 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
+  void initState() {
+    super.initState();
+    getGeoLocation();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(child: TextButton(child: Text("location"), onPressed: () {getGeoLocation();},)),
